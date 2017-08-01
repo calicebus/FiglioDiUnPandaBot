@@ -67,7 +67,7 @@ def saggimità(bot, update):
 def diamoinumeri(bot, update):
     update.message.reply_text('Non sono cazzi miei quello che ci fai: ' + str(random.randint(1, 1000)))
 
-def copione(bot, update, args):
+def copione(bot, update):
     estrazione = random.randint(0, 99)
     if estrazione == 0:
         bot.send_message(chat_id=update.message.chat_id, text=update.message.text)
