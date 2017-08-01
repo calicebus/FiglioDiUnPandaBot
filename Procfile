@@ -1,1 +1,1 @@
-web: python FiglioDiUnPanda.py -p $PORT
+worker: python FiglioDiUnPanda.py
