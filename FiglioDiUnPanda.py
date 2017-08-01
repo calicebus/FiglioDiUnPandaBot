@@ -3,7 +3,7 @@ import random
 import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-var port = process.env.PORT || 8443;
+var port = process.env.PORT or 8443;
 var host = process.env.HOST;
 var bot = new TelegramBot(token, {webHook: {port: port, host: host}});
 
