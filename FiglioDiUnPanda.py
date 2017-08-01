@@ -1,11 +1,8 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import random
 import logging
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-var port = process.env.PORT || 443;
-var host = process.env.HOST;
-var bot = new TelegramBot(token, {webHook: {port: port, host: host}});
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 def start(bot, update):
     update.message.reply_text('Incredibile, anche un pirla come te sa parlare!')
