@@ -1,1 +1,1 @@
-web: python FiglioDiUnPanda.py
+bot: python FiglioDiUnPanda.py

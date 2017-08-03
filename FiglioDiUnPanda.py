@@ -1,6 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import random
 import logging
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 def start(bot, update):
@@ -10,7 +11,7 @@ def oroscopo(bot, update):
     update.message.reply_text(
         'Siamo nel 2017, {} fatti inculare da un Panda superdotato!'.format(update.message.from_user.first_name))
 
-def saggimità(bot, update):
+def saggimezza(bot, update):
     frasi = ["Oggi sono andato al mare ma i criceti gialli hanno detto che " +
             "li hanno finiti tutti, eppure io li avevo prenotati da almeno qualche minuto...",
             "Ieri era la giornata dedicata alle oche e quindi ho deciso di " +
@@ -82,7 +83,7 @@ def unknown(bot, update):
 updater = Updater('398156401:AAFBbBmLCgRcuxnj0H0UaesSvKHh3tl7foU')
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('oroscopo', oroscopo))
-updater.dispatcher.add_handler(CommandHandler('saggimità', saggimità))
+updater.dispatcher.add_handler(CommandHandler('saggimezza', saggimezza))
 updater.dispatcher.add_handler(CommandHandler('diamoinumeri', diamoinumeri))
 updater.dispatcher.add_handler(MessageHandler(Filters.text, copione))
 updater.dispatcher.add_handler(CommandHandler('caps', caps, pass_args=True))
