@@ -4,6 +4,16 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
+def info(bot, update):
+    msg = 'FiglioDiUnPandaBot\n\n' + 'Allora... adesso mi descrivo un pochino... aspetta solo un secondo e sono da te... spetta spetta...\n'
+    msg += 'Praticamente sono me stesso, su questo credo di essere sicuro, ma se considero che questa cosa è così allora no... spetta spetto...\n'
+    msg += 'No, per me è no. Grazie lo stesso. Di sto cazzo, ma grazie che... ODDIIIOOOO! Un panda, che schifo quegli animali... aspetta, ma io...\n'
+    msg += 'Fanculo a tutti, mi fate solo confondere! Sciò!!!\n\n' + 'La lista dei comandi ve la do però, se no poi chi la sente a quella...\n'
+    msg += '/saggimezza: Beh, sono io che dico cose\n'
+    msg += '/diamoinumeri: Numeri Ad minchiam\n'
+    msg += '/oroscopo: Per conoscere il tuo futuro'
+    update.message.reply_text(msg)
+
 def start(bot, update):
     update.message.reply_text('Incredibile, anche un pirla come te sa parlare!')
 
@@ -60,18 +70,45 @@ def saggimezza(bot, update):
             "Le patatine lo riportano alla realtà, tutti lo sapevano...",
             "Un panda su due zampe è capace di creare ciò che un cavallo a 4 zampe " +
             "non potrebbe nemmeno immaginare con il pensiero...",
+            "Tutti odiamo le siepi d'inverno, mai che ti abbraccino e ti consolino, " +
+            "come se tu gli avessi fatto un torto persoanale, però ai piccioni sì!...",
+            "Le voragini del celo sono vicine, l'ozono è sceso sulla terra per liberare " +
+            "le catene dell'animo viscerale delle ulcere inguinali, sarà la fine?...",
+            "Non è necessario essere scaltri per vedere col tatto, e altrettanto " +
+            "lontane sono le montagne del futuro che permettono la salvezza eterna...",
+            "Le saracinesche ci nascondono verità a noi nascoste senza poterle vedere, " +
+            ", siamo vittime inconsce di quello che vogliono farci credere, scappate...",
+            "Le urla non si sentivano da così tanto lontano, allora mi avvicinai e le " +
+            "sentii sempre più forti, ad un certo punto smisero, ma forse ero io...",
             "In futuro ci saranno persone che andando in vacanza cadranno nel peccato " +
             "mortale di lavorare con onore e disprezzo..."]
-    estrazione = random.randint(0, 24)
+    estrazione = random.randint(0, 29)
     update.message.reply_text(frasi[estrazione])
 
 def diamoinumeri(bot, update):
     update.message.reply_text('Non sono cazzi miei quello che ci fai: ' + str(random.randint(1, 1000)))
 
-def copione(bot, update):
-    estrazione = random.randint(0, 99)
-    if estrazione == 0:
-        bot.send_message(chat_id=update.message.chat_id, text=update.message.text)
+def nonDireQuello(bot, update):
+    if 'panda' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="OOOh! Non osare nominarmi me medesimo!!!")
+    elif 'andiamo' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Dove!? Dove!? Dove!?")
+    elif 'figlio' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Parli con me? Eh!?")
+    elif 'grazie' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Ma precccco!")
+    elif 'cazzo' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Astinenza da fagiano?")
+    elif 'coglione' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Un coglione vuole sempre un compagno con cui sparlare del boss centrale...")
+    elif 'ciao' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Minchia l'originalità dei saluti...")
+    elif 'notte' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Arriva il meteorologo!")
+    elif 'giorno' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Arriva il meteorologo!")
+    elif 'birra' in update.message.text.lower():
+        bot.send_message(chat_id=update.message.chat_id, text="Me piaaaaace...")
 
 def caps(bot, update, args):
     text_caps = ' '.join(args).upper()
@@ -81,12 +118,13 @@ def unknown(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Ma come cazzo parli!")
 
 updater = Updater('398156401:AAFBbBmLCgRcuxnj0H0UaesSvKHh3tl7foU')
+updater.dispatcher.add_handler(CommandHandler('info', info))
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('oroscopo', oroscopo))
 updater.dispatcher.add_handler(CommandHandler('saggimezza', saggimezza))
 updater.dispatcher.add_handler(CommandHandler('diamoinumeri', diamoinumeri))
-updater.dispatcher.add_handler(MessageHandler(Filters.text, copione))
-updater.dispatcher.add_handler(CommandHandler('caps', caps, pass_args=True))
+updater.dispatcher.add_handler(MessageHandler(Filters.text, nonDireQuello))
+updater.dispatcher.add_handler(MessageHandler(Filters.text, caps))
 updater.dispatcher.add_handler(MessageHandler(Filters.command, unknown))
 
 updater.start_polling()
